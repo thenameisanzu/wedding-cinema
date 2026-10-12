@@ -6,7 +6,12 @@ import { motion, AnimatePresence, MotionConfig, useInView, useScroll, useTransfo
 const W = { a: 'Arya', b: 'Nikhil', date: '2027-04-14T10:30:00+05:30', dateText: '14 April 2027', city: 'Kochi, Kerala', whatsapp: '910000000000', venue: 'Venue name, Street, Kochi, Kerala', maps: 'https://www.google.com/maps/search/?api=1&query=Kochi', tag: '#AryaWedsNikhil',
   story: 'Two strangers. One delayed flight. A coffee that went cold because neither of us stopped talking. Five years, three cities and one very patient dog later, this is the scene we have been waiting to shoot. Be there for the best part.' }
 const SHOWS = [['Haldi', '12 April', '10:00 am', 'Screen 1, Family courtyard'], ['Mehendi and Sangeet', '13 April', '6:00 pm', 'Screen 2, The Garden Hall'], ['The Wedding', '14 April', '10:30 am', 'Screen 3, Main auditorium'], ['Reception', '14 April', '7:00 pm', 'Screen 4, The Grand Ballroom']]
-const CREDITS = [['Bride', 'Parents names here'], ['Groom', 'Parents names here'], ['Best Friends', 'Names here'], ['Wedding Planner', 'Name here'], ['Photography', 'Studio name here'], ['Catering', 'Caterer name here'], ['Special Thanks', 'Everyone who is coming']]
+const CREDITS = [
+  ['Parents of the Bride', 'Radha & Mohan Menon'],
+  ['Parents of the Groom', 'Lakshmi & Suresh Kumar'],
+  ['Best Friends', 'Rahul, Sneha, Ashwin & Meera'],
+  ['Special Thanks', 'To our families & everyone celebrating with us']
+]
 const ease = [.16, 1, .3, 1]
 const wa = (t) => `https://wa.me/${W.whatsapp}?text=${encodeURIComponent(t)}`
 
