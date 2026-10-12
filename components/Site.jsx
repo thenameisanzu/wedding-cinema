@@ -185,10 +185,68 @@ export default function Site() {
             <AnimatePresence>{printed && <motion.div initial={{ y: 80, opacity: 0, rotate: -4 }} animate={{ y: 0, opacity: 1, rotate: -2 }} transition={{ type: 'spring', stiffness: 120, damping: 12 }} className="mx-auto mt-8 max-w-md rounded-2xl bg-ivory p-6 text-center text-teal"><p className="font-label text-lg tracking-[.3em] text-rust">ADMIT {yes ? seats : 0}</p><p className="font-display text-3xl">{name}</p><p className="mt-1 text-sm">{W.a} &amp; {W.b}, {W.dateText}</p></motion.div>}</AnimatePresence>
           </section>
 
-          <section className="relative h-[100dvh] overflow-hidden bg-[#050505] text-center">
-            <motion.div initial={{ y: '100dvh' }} whileInView={{ y: '-130%' }} viewport={{ once: false }} transition={{ duration: 26, ease: 'linear', repeat: Infinity }} className="absolute inset-x-0 top-0 space-y-10 px-6">
-              <p className="font-display text-5xl text-mari">Credits</p>{CREDITS.map(([r, nm]) => <div key={r}><p className="font-label text-xl tracking-[.4em] text-ivory/60">{r.toUpperCase()}</p><p className="font-sans text-3xl">{nm}</p></div>)}
-              <p className="font-display text-7xl text-mari">The End</p><p className="font-label text-2xl tracking-[.3em]">{W.tag}</p></motion.div>
+          <section className="relative min-h-[100dvh] overflow-hidden bg-[#050505] px-6 py-32 text-center">
+            {/* Cinematic projector beam & background glow */}
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-mari/10 via-rust/5 to-transparent blur-2xl" />
+            
+            <div className="relative mx-auto max-w-2xl space-y-16">
+              {/* Credits Title */}
+              <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1, ease }}>
+                <p className="font-label text-sm tracking-[.5em] text-mari/70">ROLLING</p>
+                <h2 className="mt-2 font-display text-6xl text-mari md:text-8xl">Credits</h2>
+                <div className="mx-auto mt-6 flex w-32 items-center justify-center gap-2">
+                  <span className="h-px flex-1 bg-gradient-to-r from-transparent to-mari/50" />
+                  <span className="h-2 w-2 rotate-45 border border-mari/60" />
+                  <span className="h-px flex-1 bg-gradient-to-l from-transparent to-mari/50" />
+                </div>
+              </motion.div>
+
+              {/* Credits List */}
+              <div className="space-y-10">
+                {CREDITS.map(([r, nm], i) => (
+                  <motion.div
+                    key={r}
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.6 }}
+                    transition={{ duration: 0.8, delay: i * 0.06, ease }}
+                    className="space-y-1.5"
+                  >
+                    <p className="font-label text-xs tracking-[.4em] text-ivory/50 md:text-sm">{r.toUpperCase()}</p>
+                    <p className="font-sans text-2xl font-light tracking-wide text-ivory md:text-3xl">{nm}</p>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* The End and Replay */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.2, ease }}
+                className="pt-12"
+              >
+                <div className="mx-auto my-8 flex w-48 items-center justify-center gap-3">
+                  <span className="h-px flex-1 bg-gradient-to-r from-transparent to-mari" />
+                  <span className="font-label text-xs tracking-[.3em] text-mari">★ ★ ★</span>
+                  <span className="h-px flex-1 bg-gradient-to-l from-transparent to-mari" />
+                </div>
+
+                <p className="font-display text-7xl text-mari md:text-9xl">The End</p>
+                <p className="mt-4 font-label text-2xl tracking-[.3em] text-ivory/80">{W.tag}</p>
+
+                {/* Back to top / replay button */}
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                  className="mt-12 inline-flex items-center gap-3 rounded-full border border-mari/60 bg-mari/10 px-6 py-3 font-label text-base tracking-[.25em] text-mari backdrop-blur-sm transition-colors hover:bg-mari hover:text-teal"
+                >
+                  <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current"><path d="M12 4l-8 8h5v8h6v-8h5z" /></svg>
+                  BACK TO TOP
+                </motion.button>
+              </motion.div>
+            </div>
           </section>
         </main>)}
     </MotionConfig>
